@@ -1,22 +1,45 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+});
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://farkle.prosperdonkey.com"),
   title: "Farkle — Prosper Donkey",
-  description: "Roll the dice, press your luck. Prosper Donkey Farkle.",
-  icons: { icon: '/donkey.jpg' },
+  description: "Roll the dice, press your luck, bank it before you farkle. Play friends on one phone or take on the Donkey.",
+  appleWebApp: { capable: true, title: "Farkle", statusBarStyle: "black-translucent" },
+  openGraph: {
+    title: "Farkle — Prosper Donkey",
+    description: "Roll the dice. Press your luck. Bank it before you farkle.",
+    url: "https://farkle.prosperdonkey.com",
+    siteName: "Prosper Donkey",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#120F0B",
+  viewportFit: "cover",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -27,9 +50,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${instrumentSans.variable} ${jetBrainsMono.variable} ${newsreader.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-dvh">
         {children}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2JHY5RMFV7" strategy="afterInteractive" />
         <Script id="ga4" strategy="afterInteractive">{`

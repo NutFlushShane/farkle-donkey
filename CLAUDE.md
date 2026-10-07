@@ -18,11 +18,13 @@ No test runner is configured yet.
 
 ## Architecture
 
-Fresh Next.js 16 App Router project scaffolded with `create-next-app`. TypeScript, Tailwind CSS v4, and ESLint are configured.
+Next.js 16 App Router, static export (`output: "export"`). TypeScript, Tailwind CSS v4, and ESLint are configured.
 
-- `src/app/` — App Router root. `layout.tsx` is the root layout; `page.tsx` is the home route.
+- `src/app/` — App Router root. `layout.tsx` is the root layout; `page.tsx` is the home route. Icons and the OG image are static PNGs in `src/app/`; `manifest.ts` is the PWA manifest.
+- `src/lib/` — pure game logic: `farkle.ts` (scoring), `game.ts` (reducer; dice values arrive on the action), `bot.ts` (computer opponent, expected-value table), `sfx.ts` (WebAudio synth), `storage.ts`, `quips.ts`.
+- `src/components/` — `FarkleGame.tsx` (root: persistence, bot driver, sounds), `Board.tsx` (game screen), `Dice.tsx` (CSS 3D dice), `Setup.tsx`, `Screens.tsx` (handoff, game over), `ui.tsx`, `fx.tsx`.
 - `src/` path alias `@/*` maps to `src/*`.
-- Fonts: Geist Sans and Geist Mono loaded via `next/font/google`.
+- Brand matches prosperdonkey.com: Newsreader / Instrument Sans / JetBrains Mono via `next/font/google`; colour tokens in `globals.css` `@theme`. Donkey art in `public/` is cut from the website's `public/brand/donk-*.png`.
 - Tailwind CSS v4 with PostCSS (`postcss.config.mjs`). Uses the new `@tailwindcss/postcss` plugin — no `tailwind.config` file.
 - ESLint flat config (`eslint.config.mjs`) with `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`.
 
