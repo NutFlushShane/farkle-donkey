@@ -74,8 +74,8 @@ export default function Setup({ onStart, onRules }: { onStart: (t: Table) => voi
       {/* hero */}
       <section className="relative mt-3 flex min-h-[236px] items-end justify-between">
         <div className="fade-up relative z-10 pb-8">
-          <p className="eyebrow text-brass">A game of nerve</p>
-          <h1 className="font-display text-[clamp(52px,17vw,68px)] leading-[0.9] font-semibold tracking-tight">Farkle</h1>
+          <p className="eyebrow mb-2 text-brass">A game of nerve</p>
+          <h1 className="font-display text-[clamp(52px,17vw,68px)] leading-none font-semibold tracking-tight">Farkle</h1>
           <p className="mt-2 font-display text-lg text-sand italic">Roll the dice.<br />Press your luck.</p>
         </div>
         <div className="pointer-events-none absolute -right-4 bottom-0 h-[226px] w-[min(196px,48vw)]">
