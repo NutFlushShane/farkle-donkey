@@ -28,6 +28,20 @@ Next.js 16 App Router, static export (`output: "export"`). TypeScript, Tailwind 
 - Tailwind CSS v4 with PostCSS (`postcss.config.mjs`). Uses the new `@tailwindcss/postcss` plugin — no `tailwind.config` file.
 - ESLint flat config (`eslint.config.mjs`) with `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`.
 
+## After a release players would notice
+
+Keep the website's game page current: https://prosperdonkey.com/games/farkle/ (website repo,
+`src/app/games/_games.ts`, the `farkle` entry). When a release changes something a player would notice
+(a new mode, rule, setting, bot level or look), update the entry's `status`, `summary`, `pitch` and `steps`.
+When the look changed, rebuild here (`npm run build`; `out/` must match the live site), re-shoot with
+`node ~/Projects/prosper-donkey/website/.claude/skills/post/shoot-farkle.mjs <out-dir>` and re-encode the
+keepers to `website/public/games/farkle/` (straight, kept, setup; 520px wide webp). Run `npm run lint` in the
+website before pushing its `main`, which deploys it. Facts from the code only, and no gambling words (bet,
+wager, win money). Tell Shane what changed on the page.
+
+The footer credit ("A Prosper Donkey joint" in `src/components/FarkleGame.tsx`) should link to
+https://prosperdonkey.com/games/farkle/, not the home page.
+
 ## Next.js 16 Breaking Changes
 
 This project runs **Next.js 16**, which has significant breaking changes from v14/v15 that likely differ from training data. Read `node_modules/next/dist/docs/` before writing code involving any of these areas:
