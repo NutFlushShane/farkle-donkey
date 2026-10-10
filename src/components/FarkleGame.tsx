@@ -166,7 +166,8 @@ export default function FarkleGame() {
           <MenuItem onClick={() => { closeMenu(); setRulesOpen(true) }} title="How to play" sub="Scoring and rules" />
         </div>
         <p className="mt-4 text-center text-[12px] text-muted">
-          A <a href="https://prosperdonkey.com" className="underline decoration-sand/30 underline-offset-2 hover:text-cream">Prosper Donkey</a> joint
+          A <a href="https://prosperdonkey.com" className="underline decoration-sand/30 underline-offset-2 hover:text-cream">Prosper Donkey</a> joint ·{' '}
+          <a href="https://prosperdonkey.com/privacy/#games" className="underline decoration-sand/30 underline-offset-2 hover:text-cream">Privacy</a>
         </p>
       </Sheet>
     </>

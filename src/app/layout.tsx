@@ -59,7 +59,8 @@ export default function RootLayout({
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-2JHY5RMFV7');
+          // ad personalization and Google Signals off: prosperdonkey.com/privacy#games
+          gtag('config', 'G-2JHY5RMFV7', { allow_google_signals: false, allow_ad_personalization_signals: false });
         `}</Script>
       </body>
     </html>
