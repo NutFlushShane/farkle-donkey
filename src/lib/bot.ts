@@ -91,14 +91,14 @@ export function decide(s: GameState, level: BotLevel): BotMove {
   const tbl = table(opening)
   const toBeat = scoreToBeat(s)
 
+  // The most points this roll can bank. Whenever the Donkey banks, it banks this keep.
+  const most = options.reduce((a, b) => (b.total > a.total || (b.total === a.total && b.left > a.left) ? b : a))
   const pick =
-    level === 'easy'
-      ? options.reduce((a, b) => (b.total > a.total || (b.total === a.total && b.left > a.left) ? b : a))
-      : options.reduce((a, b) => (tbl.value(b.total, b.left) > tbl.value(a.total, a.left) ? b : a))
+    level === 'easy' ? most : options.reduce((a, b) => (tbl.value(b.total, b.left) > tbl.value(a.total, a.left) ? b : a))
 
-  const blocked = mustOpen(s, pick.total)
-  const winsOrTriggers = me.score + pick.total >= s.settings.target
-  const beats = toBeat !== null && me.score + pick.total > toBeat
+  const blocked = mustOpen(s, most.total)
+  const winsOrTriggers = me.score + most.total >= s.settings.target
+  const beats = toBeat !== null && me.score + most.total > toBeat
 
   let bank: boolean
   if (blocked) bank = false
@@ -107,6 +107,6 @@ export function decide(s: GameState, level: BotLevel): BotMove {
   else if (level === 'easy') bank = pick.total >= [0, 200, 250, 300, 350, 500, Infinity][pick.left]
   else bank = pick.total >= NERVE[level] * tbl.rollValue(pick.total, pick.left)
 
-  return { keepIds: pick.keepIds, action: bank ? 'bank' : 'roll' }
+  return bank ? { keepIds: most.keepIds, action: 'bank' } : { keepIds: pick.keepIds, action: 'roll' }
 }
 
